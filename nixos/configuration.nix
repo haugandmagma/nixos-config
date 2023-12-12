@@ -13,6 +13,7 @@ in
     ] ++
     ( import ../modules/programs ) ++
     ( import ../modules/services ) ++
+    ( import ../modules/virtualisation ) ++
     ( import ../modules/services/desktops );
 
   # Use the systemd-boot EFI boot loader.
