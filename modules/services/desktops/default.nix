@@ -1,0 +1,4 @@
+[
+  # ./kde.nix
+  ./gnome.nix
+]
