@@ -13,7 +13,7 @@
         ${pkgs.git}/bin/git clone https://github.com/matthiasbenaets/emacs.d.git $CONFIG
       fi
 
-      chown -R ${vars.user}:users /home/${vars.user}/.emacs
+      chown -R ${vars.user}:users /home/${vars.user}/.emacs.d
     '';
   };
 
