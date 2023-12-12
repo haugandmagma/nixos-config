@@ -20,14 +20,25 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      flake = false;
+    };
+
+    doom-emacs = {
+      url = "github:nix-community/nix-doom-emacs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.emacs-overlay.follows = "emacs-overlay";
+    };
+
     plasma-manager = {
       url = "github:pjones/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "nixpkgs";
     };
-  }; 
+  };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nixgl, nixvim, plasma-manager, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nixgl, nixvim, doom-emacs, plasma-manager, ... }:
   let
     system = "x86_64-linux";
 
@@ -53,17 +64,17 @@
   {
     nixosConfigurations = {
       nixos = lib.nixosSystem {
-	inherit system;
-	specialArgs = { inherit inputs system stable plasma-manager vars; };
-	modules = [
-	  nixvim.nixosModules.nixvim
-	  ./nixos/configuration.nix
+	      inherit system;
+	      specialArgs = { inherit inputs system stable plasma-manager vars; };
+	      modules = [
+	        nixvim.nixosModules.nixvim
+	        ./nixos/configuration.nix
 
-	  home-manager.nixosModules.home-manager {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	  }
-	];
+	        home-manager.nixosModules.home-manager {
+	          home-manager.useGlobalPkgs = true;
+	          home-manager.useUserPackages = true;
+	        }
+	      ];
       };
     };
   };
