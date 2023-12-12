@@ -12,6 +12,7 @@ in
       ./hardware-configuration.nix
     ] ++
     ( import ../modules/programs ) ++
+    ( import ../modules/services ) ++
     ( import ../modules/services/desktops );
 
   # Use the systemd-boot EFI boot loader.
@@ -56,8 +57,8 @@ in
     pipewire = {
       enable = true;
       alsa = {
-	enable = true;
-	support32Bit = true;
+	      enable = true;
+	      support32Bit = true;
       };
       pulse.enable = true;
       jack.enable = true;
@@ -78,10 +79,10 @@ in
     opengl = {
       enable = true;
       extraPackages = with pkgs; [
-	intel-media-driver
-	vaapiIntel
-	vaapiVdpau
-	libvdpau-va-gl
+	      intel-media-driver
+	      vaapiIntel
+	      vaapiVdpau
+	      libvdpau-va-gl
       ];
     };
     sane = {
@@ -147,6 +148,7 @@ in
 
       # Apps
       appimage-run
+      dbeaver
       librewolf
       onlyoffice-bin
       telegram-desktop
@@ -161,7 +163,7 @@ in
       # File Management
       gnome.file-roller
       okular
-      # pcmanfm
+      #pcmanfm
       p7zip
       rsync
       unzip
