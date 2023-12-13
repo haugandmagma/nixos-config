@@ -11,6 +11,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ] ++
+    ( import ../modules/desktops ) ++
     ( import ../modules/hardware ) ++
     ( import ../modules/programs ) ++
     ( import ../modules/services ) ++
