@@ -52,53 +52,6 @@ in
     sudo.wheelNeedsPassword = false;
   };
 
-  services = {
-    printing = {
-      enable = true;
-    };
-    # pipewire = {
-    #   enable = true;
-    #   alsa = {
-	  #     enable = true;
-	  #     support32Bit = true;
-    #   };
-    #   pulse.enable = true;
-    #   jack.enable = true;
-    # };
-    # openssh = {
-    #   enable = true;
-    #   allowSFTP = true;
-    #   # extraConfig = ''
-    #   #   HostKeyAlgorithms +ssa-rsa
-    #   # '';
-    # };
-  };
-
-  hardware = {
-    pulseaudio = {
-      enable = false;
-    };
-    # opengl = {
-    #   enable = true;
-    #   extraPackages = with pkgs; [
-	  #     intel-media-driver
-	  #     vaapiIntel
-	  #     vaapiVdpau
-	  #     libvdpau-va-gl
-    #   ];
-    # };
-    # sane = {
-    #   enable = true;
-    #   extraBackends = [ pkgs.sane-airscan ];
-    # };
-    # bluetooth = {
-    #   enable = true;
-    # };
-  };
-
-  # Enable sound.
-  sound.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${vars.user} = {
     isNormalUser = true;
@@ -183,10 +136,17 @@ in
     ]);
   };
 
-  programs = {
-    dconf.enable = true;
-  };
+  # Enable sound
+  sound.enable = true;
 
+  # Seperate from modules
+  hardware.pulseaudio.enable = false;
+
+  services.printing.enable = true;
+
+  programs.dconf.enable = true;
+
+  # Nix config
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -212,11 +172,13 @@ in
     };
   };
 
+  system.stateVersion = "23.05";
+
+  # Fix bluetooth issue
   systemd.tmpfiles.rules = [ "d /var/lib/bluetooth 700 root root - -" ];
   systemd.targets."bluetooth".after = [ "systemd-tmpfiles-setup.service" ];
 
-  system.stateVersion = "23.05";
-
+  # Home config
   home-manager.users.${vars.user} = {
     home = {
       stateVersion = "23.05";
