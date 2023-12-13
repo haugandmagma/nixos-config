@@ -11,10 +11,10 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ] ++
+    ( import ../modules/hardware ) ++
     ( import ../modules/programs ) ++
     ( import ../modules/services ) ++
-    ( import ../modules/virtualisation ) ++
-    ( import ../modules/services/desktops );
+    ( import ../modules/virtualisation );
 
   # Use the systemd-boot EFI boot loader.
   boot = {
@@ -55,44 +55,44 @@ in
     printing = {
       enable = true;
     };
-    pipewire = {
-      enable = true;
-      alsa = {
-	      enable = true;
-	      support32Bit = true;
-      };
-      pulse.enable = true;
-      jack.enable = true;
-    };
-    openssh = {
-      enable = true;
-      allowSFTP = true;
-      # extraConfig = ''
-      #   HostKeyAlgorithms +ssa-rsa
-      # '';
-    };
+    # pipewire = {
+    #   enable = true;
+    #   alsa = {
+	  #     enable = true;
+	  #     support32Bit = true;
+    #   };
+    #   pulse.enable = true;
+    #   jack.enable = true;
+    # };
+    # openssh = {
+    #   enable = true;
+    #   allowSFTP = true;
+    #   # extraConfig = ''
+    #   #   HostKeyAlgorithms +ssa-rsa
+    #   # '';
+    # };
   };
 
   hardware = {
     pulseaudio = {
       enable = false;
     };
-    opengl = {
-      enable = true;
-      extraPackages = with pkgs; [
-	      intel-media-driver
-	      vaapiIntel
-	      vaapiVdpau
-	      libvdpau-va-gl
-      ];
-    };
-    sane = {
-      enable = true;
-      extraBackends = [ pkgs.sane-airscan ];
-    };
-    bluetooth = {
-      enable = true;
-    };
+    # opengl = {
+    #   enable = true;
+    #   extraPackages = with pkgs; [
+	  #     intel-media-driver
+	  #     vaapiIntel
+	  #     vaapiVdpau
+	  #     libvdpau-va-gl
+    #   ];
+    # };
+    # sane = {
+    #   enable = true;
+    #   extraBackends = [ pkgs.sane-airscan ];
+    # };
+    # bluetooth = {
+    #   enable = true;
+    # };
   };
 
   # Enable sound.
