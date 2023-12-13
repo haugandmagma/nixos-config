@@ -43,6 +43,7 @@ with lib;
     gnome.excludePackages = (with pkgs; [
       gnome-console
       gnome-tour
+      xterm
     ]) ++ (with pkgs.gnome; [
       atomix
       epiphany
@@ -51,6 +52,7 @@ with lib;
       gnome-characters
       gnome-contacts
       gnome-initial-setup
+      gnome-music
       hitori
       iagno
       tali
