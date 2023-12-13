@@ -43,7 +43,6 @@ with lib;
     gnome.excludePackages = (with pkgs; [
       gnome-console
       gnome-tour
-      xterm
     ]) ++ (with pkgs.gnome; [
       atomix
       epiphany
