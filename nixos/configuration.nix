@@ -42,7 +42,7 @@ in
   console = {
     font = "Lat2-Terminus16";
     #keyMap = "us";
-    useXkbConfig = true; # use xkbOptions in tty.
+    useXkbConfig = true;
   };
 
   security = {
@@ -115,7 +115,7 @@ in
     corefonts
     (nerdfonts.override {
       fonts = [
-	"FiraCode"
+	      "FiraCode"
       ];
     })
   ];
