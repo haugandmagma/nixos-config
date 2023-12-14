@@ -30,7 +30,7 @@ in
       {
         event = "FileType";
         pattern = [ "markdown" "org" "norg" ];
-        command = "setlocal spell spelllang=en,nl";
+        command = "setlocal spell spelllang=en,id";
         desc = "Spell Checking";
       }
       {
