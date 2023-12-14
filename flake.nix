@@ -31,14 +31,14 @@
       inputs.emacs-overlay.follows = "emacs-overlay";
     };
 
-    plasma-manager = {
-      url = "github:pjones/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "nixpkgs";
-    };
+    # plasma-manager = {
+    #   url = "github:pjones/plasma-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.home-manager.follows = "nixpkgs";
+    # };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nixgl, nixvim, doom-emacs, plasma-manager, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nixgl, nixvim, doom-emacs, ... }:
   let
     system = "x86_64-linux";
 
@@ -65,7 +65,7 @@
     nixosConfigurations = {
       nixos = lib.nixosSystem {
 	      inherit system;
-	      specialArgs = { inherit inputs system stable plasma-manager vars; };
+	      specialArgs = { inherit inputs system stable doom-emacs vars; };
 	      modules = [
 	        nixvim.nixosModules.nixvim
 	        ./nixos/configuration.nix
