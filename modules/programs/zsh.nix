@@ -1,9 +1,13 @@
 { pkgs, vars, ... }:
 
 {
-users.users.${vars.user} = {
+  users.users.${vars.user} = {
     shell = pkgs.zsh;
-    packages = [ pkgs.starship ];
+    packages = with pkgs; [
+      bat
+      eza
+      starship
+    ];
   };
 
   programs = {
@@ -19,11 +23,17 @@ users.users.${vars.user} = {
 
       ohMyZsh = {
         enable = true;
-        plugins = [ "git" ];
+        plugins = [
+          "aliases"
+          "git"
+          "z"
+        ];
       };
 
       shellInit = ''
         source ${pkgs.starship}
+        alias ll='eza -l --icons -a'
+        alias lt='eza -tree --level=2 --long --icons'
         eval "$(starship init zsh)"
       '';
     };

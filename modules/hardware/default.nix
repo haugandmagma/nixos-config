@@ -1,5 +1,7 @@
 [
+  ./audio.nix
+  ./battery.nix
   ./bluetooth.nix
   ./graphic.nix
-  ./scan.nix
+  ./print-scan.nix
 ]

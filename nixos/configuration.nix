@@ -26,6 +26,7 @@ in
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  # Configure network.
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
@@ -33,10 +34,6 @@ in
 
   # Set your time zone.
   time.timeZone = "Asia/Jakarta";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -46,6 +43,7 @@ in
     useXkbConfig = true;
   };
 
+  # Security.
   security = {
     polkit.enable = true;
     rtkit.enable = true;
@@ -58,6 +56,7 @@ in
     extraGroups = [ "wheel" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
   };
 
+  # Fonts.
   fonts.packages = with pkgs; [
     carlito
     vegur
@@ -74,6 +73,7 @@ in
     })
   ];
 
+  # System wide packages.
   environment = {
     variables = {
       TERMINAL = "${vars.terminal}";
@@ -83,10 +83,8 @@ in
     systemPackages = with pkgs; [
       # Terminal
       awscli2
-      bat
       btop
       coreutils
-      eza
       git
       killall
       kubectl
@@ -136,17 +134,9 @@ in
     ]);
   };
 
-  # Enable sound
-  sound.enable = true;
-
-  # Seperate from modules
-  hardware.pulseaudio.enable = false;
-
-  services.printing.enable = true;
-
   programs.dconf.enable = true;
 
-  # Nix config
+  # Nix config.
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -174,11 +164,11 @@ in
 
   system.stateVersion = "23.05";
 
-  # Fix bluetooth issue
+  # Fix bluetooth issue.
   systemd.tmpfiles.rules = [ "d /var/lib/bluetooth 700 root root - -" ];
   systemd.targets."bluetooth".after = [ "systemd-tmpfiles-setup.service" ];
 
-  # Home config
+  # Home-manager config.
   home-manager.users.${vars.user} = {
     home = {
       stateVersion = "23.05";
