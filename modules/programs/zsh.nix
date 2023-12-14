@@ -7,6 +7,7 @@
       bat
       eza
       starship
+      zsh-z
     ];
   };
 
