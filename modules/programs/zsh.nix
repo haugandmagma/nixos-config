@@ -25,7 +25,6 @@
       ohMyZsh = {
         enable = true;
         plugins = [
-          "aliases"
           "git"
           "z"
         ];
