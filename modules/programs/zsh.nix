@@ -32,7 +32,7 @@
 
       shellInit = ''
         source ${pkgs.starship}
-        alias ll='eza -l --icons -a'
+        alias li='eza -lha --icons'
         alias lt='eza --tree --level=2 --long --icons'
         eval "$(starship init zsh)"
       '';
