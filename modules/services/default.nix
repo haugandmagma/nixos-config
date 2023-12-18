@@ -1,3 +1,4 @@
 [
   ./ssh.nix
+  ./vpn.nix
 ]
