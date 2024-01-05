@@ -105,6 +105,7 @@ in
       librewolf
       onlyoffice-bin
       telegram-desktop
+      zoom-us
 
       # Video/Audio
       feh
