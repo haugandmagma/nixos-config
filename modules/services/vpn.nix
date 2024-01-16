@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     strongswan
+    openfortivpn
   ];
   services.strongswan = {
     enable = true;
